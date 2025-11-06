@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include <stdlib.h>
-
+#include "validacao.h"
 
 int main() {
-    printf("Hello, World!\n");
+    int opcao = LerNumeroValido();
+    printf("Voce escolheu a opcao: %d\n", opcao);
     return 0;
 }
