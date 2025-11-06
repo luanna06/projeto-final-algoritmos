@@ -1,10 +1,8 @@
 #include <stdio.h>
 #include "validacao.h"
 
-#define MIN 1
-#define MAX 5
 
-int LerNumeroValido() {
+int LerNumeroValido(int max, int min) {
     int num;
 
     printf("Digite uma opcao: ");
@@ -12,10 +10,14 @@ int LerNumeroValido() {
 
     while (getchar() != '\n');
 
-    if (num < MIN || num > MAX) {
+    if (num < min || num > max) {
         printf("Opcao invalida! Tente novamente.\n");
-        return LerNumeroValido();
+        return LerNumeroValido(max, min);
     } else {
         return num;
     }
+}
+
+int menu (int i){
+    
 }

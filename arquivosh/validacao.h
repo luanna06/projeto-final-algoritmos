@@ -1,6 +1,6 @@
 #ifndef VALIDACAO_H
 #define VALIDACAO_H
 
-int LerNumeroValido(void);
+int LerNumeroValido(int max, int min);
 
 #endif
