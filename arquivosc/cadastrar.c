@@ -1,43 +1,50 @@
-#include "cadastrar.h"
-#include <stdio.h>
-#include "validacao.h"
-#include "contato.h"
 
+#include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
- 
-void cadastrar(Contato **contato){
+#include "../arquivosh/contato.h"
+#include "../arquivosh/cadastrar.h"
+#include "../arquivosh/validacao.h"
+
+void CadastroPessoa(Contato *contato);
+
+// Função principal de cadastro
+void cadastrar(Contato *contato) {
     printf("1. Pessoa\n");
     printf("2. Telefone\n");
     printf("3. Retornar\n");
-    int opcao2;
-    opcao2 =  LerNumeroValido(3, 1);
+
+    int opcao2 = LerNumeroValido(3, 1);
 
     switch(opcao2) {
         case 1:
-        CadastroPessoa(*contato);
-        break;
+            CadastroPessoa(contato); 
+            break;
 
         case 2:
-        printf("Cadastro de Telefone selecionado.\n");
-        break;
+            printf("Cadastro de Telefone selecionado.\n");
+            break;
 
         case 3:
-        printf("Retornando ao menu principal...\n");
-        break;
+            printf("Retornando ao menu principal...\n");
+            break;
     }
 }
 
-void CadastroPessoa(Contato *contato){
+// Função auxiliar para cadastrar uma pessoa
+bool ValidarNome(const char *nome);
+
+void CadastroPessoa(Contato *contato) {
     bool dadosValidos = false;
-    while(!dadosValidos){
-         printf("Digite o nome da pessoa: ");
+    while(!dadosValidos) {
+        printf("Digite o nome da pessoa: ");
         scanf("%49s", contato->nome);
-        
+
+        dadosValidos = ValidarNome(contato->nome);
     }
+
+    printf("Pessoa cadastrada com sucesso\n", contato->nome);
 }
-
-
-
 
 
 

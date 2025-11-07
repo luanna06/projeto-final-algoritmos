@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include "validacao.h"
-#include "menuP.h"
+#include "arquivosh/menuP.h"
 #include "Cadastrar.h"
 #include "Editar.h"
 #include "Excluir.h"
 #include "Consultar.h"
-#include "contato.h"
+#include "arquivosh/contato.h"
 
 int main() {
 

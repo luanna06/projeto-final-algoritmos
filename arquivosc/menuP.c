@@ -1,11 +1,12 @@
 #include <stdio.h>
-#include <stdio.h>
-#include "menuP.h"
-#include "Cadastrar.h"
-#include "Editar.h"
-#include "Excluir.h"
-#include "Consultar.h"
-#include "contato.h"
+#include <stdlib.h>
+#include "../arquivosh/menuP.h"
+#include "../arquivosh/contato.h"
+#include "../arquivosh/cadastrar.h"
+#include "../arquivosh/consultar.h"
+#include "../arquivosh/editar.h"
+#include "../arquivosh/excluir.h"
+#include "../arquivosh/validacao.h"
 
 void exibirmenu() {
     printf("1. Cadastrar\n");
@@ -18,7 +19,7 @@ void exibirmenu() {
 void menuCadastro(int opcao, Contato *contato) {
     switch(opcao) {
         case 1:
-        cadastrar(*contato);
+        cadastrar(contato);
         break;
 
         case 2:

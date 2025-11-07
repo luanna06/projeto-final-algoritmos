@@ -1,5 +1,9 @@
 #include <stdio.h>
-#include "validacao.h"
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
+#include "../arquivosh/validacao.h"
+#include "../arquivosh/contato.h"
 
 
 int LerNumeroValido(int max, int min) {
@@ -20,4 +24,13 @@ int LerNumeroValido(int max, int min) {
 
 int menu (int i){
     
+}
+
+bool ValidarNome(const char *nome){
+    int tamanho = strlen(nome);
+    if(tamanho > 2 || tamanho < 30){
+        printf("Nome invalido! Deve ter entre 2 e 30 caracteres.\n");
+        return false;
+    }
+    return true;
 }
