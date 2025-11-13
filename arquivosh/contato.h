@@ -4,9 +4,11 @@
 #include "contato.h"
 
 typedef struct {
-    char nome[50];
+    char nome[100];
     char telefone[15];
-    char email[50];
+    char email[100];
+    char cpf[12];
+    char dataNascimento[11];
     int IDPessoa;
 } Contato;
 

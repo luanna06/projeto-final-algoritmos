@@ -9,6 +9,7 @@
 #include "../arquivosh/validacao.h"
 
 void exibirmenu() {
+    printf("*** Menu Principal ***\n");
     printf("1. Cadastrar\n");
     printf("2. Editar\n");
     printf("3. Excluir\n");
