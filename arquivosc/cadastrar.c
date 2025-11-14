@@ -6,118 +6,201 @@
 #include "../arquivosh/cadastrar.h"
 #include "../arquivosh/validacao.h"
 
+// Agenda principal
+Contato agenda[100];
+int quantidadeContatos = 0;
+
 void CadastroPessoa(Contato *contato);
 void salvarContato(Contato c);
+void CadastroTelefone(Contato *agenda , int quantidadeContatos);
 
+int opcao2;
 
-// Função principal de cadastro
+//menu cadastro principal
 void cadastrar(Contato *contato) {
-    printf("*** Menu de Cadastro ***\n");
-    printf("1. Pessoa\n");
-    printf("2. Telefone\n");
-    printf("3. Retornar\n");
+    do {
+        printf("*** Menu de Cadastro ***\n");
+        printf("1. Pessoa\n");
+        printf("2. Telefone\n");
+        printf("3. Retornar\n");
 
-    int opcao2 = LerNumeroValido(3, 1);
+        opcao2 = LerNumeroValido(3, 1);
 
-    switch(opcao2) {
-        case 1:
-            CadastroPessoa(contato); 
-            break;
+        switch(opcao2) {
+            case 1:
+                CadastroPessoa(contato);
+                break;
 
-        case 2:
-            printf("Funcao de cadastro de telefone ainda nao implementada.\n");
-            break;
+            case 2:
+                CadastroTelefone(agenda, quantidadeContatos);
+                break;
 
-        case 3:
-            printf("Retornando ao menu principal...\n");
-            break;
-    }
+            case 3:
+                printf("Retornando ao menu principal...\n");
+                break;
+        }
+
+    } while(opcao2 != 3);
 }
 
-bool ValidarNome(const char *nome);
-bool ValidarTelefone(const char *telefone);
-bool ValidarEmail(const char *email);
-bool ValidarCPF(const char *cpf);
-bool ValidarDataNascimento(const char *dataNascimento);
-
+//funçao cadastro pessoa todos os dados
 void CadastroPessoa(Contato *contato) {
 
-    // Cadastro do nome
     bool dadosValidos = false;
+
+    // nome
     while(!dadosValidos) {
         printf("*** Cadastro de Informacoes Pessoais ***\n");
         printf("Digite o nome da pessoa: ");
-        scanf(" %49[^\n]", contato->nome);
+        scanf(" %99[^\n]", contato->nome);
 
         dadosValidos = ValidarNome(contato->nome);
     }
 
-    printf("Nome cadastrado com sucesso!\n", contato->nome);
+    printf("Nome cadastrado com sucesso!\n");
 
-    //Data de nascimento 
+    // data de nascimento
     dadosValidos = false;
     while(!dadosValidos) {
-        printf("*** Cadastro de Data de Nascimento ***\n");
         printf("Digite a data de nascimento (DD/MM/AAAA): ");
         scanf(" %10s", contato->dataNascimento);
 
         dadosValidos = ValidarDataNascimento(contato->dataNascimento); 
     }
 
-    printf("Data de nascimento cadastrada com sucesso!\n", contato->dataNascimento);
+    printf("Data cadastrada com sucesso!\n");
 
-    //Cadastro de CPF
+    // CPF
     dadosValidos = false;
     while(!dadosValidos) {
-        printf("*** Cadastro de CPF ***\n");
         printf("Digite o CPF (apenas numeros): ");
         scanf(" %11s", contato->cpf);
 
         dadosValidos = ValidarCPF(contato->cpf);
     }
-    printf("CPF cadastrado com sucesso!\n", contato->cpf);
 
-    // Cadastro do email
+    printf("CPF cadastrado com sucesso!\n");
+
+    // cadastro email
     dadosValidos = false;
     while(!dadosValidos) {
-    printf("*** Cadastro de Email ***\n");
-    printf("Digite o email: ");
-    scanf(" %30s", contato->email);
+        printf("Digite o email: ");
+        scanf(" %99s", contato->email);
 
-    dadosValidos = ValidarEmail(contato->email);
+        dadosValidos = ValidarEmail(contato->email);
     }
 
-    printf("Email cadastrado com sucesso!\n", contato->email);
+    printf("Email cadastrado com sucesso!\n");
 
-    // Cadastro do telefone
+    // telefone opcional
     char escolha;
-    printf("Voce deseja cadastrar um telefone? 's' para sim, 'n' para nao: ");
+    printf("Deseja cadastrar um telefone agora? (s/n): ");
     scanf(" %c", &escolha);
 
-    if(escolha == 's' || escolha == 'S'){
-    dadosValidos = false;   
-    while(!dadosValidos) {
-        printf("*** Cadastro de Telefone ***\n");
-        printf("Digite o numero de telefone: DDD + Numero (apenas numeros): ");
-        scanf("%14s", contato->telefone);
+    if (escolha == 's' || escolha == 'S') {
 
-        dadosValidos = ValidarTelefone(contato->telefone);  
+        contato->quantidadeTelefones = 0; // inicializa
+
+        dadosValidos = false;
+
+        while(!dadosValidos) {
+
+            printf("Digite o telefone (DDD + numero): ");
+            scanf(" %14s", contato->telefone[0]);
+
+            dadosValidos = ValidarTelefone(contato->telefone[0]);
+        }
+
+        contato->quantidadeTelefones = 1;
     }
-    }
-    else {
-        printf("Cadastro finalizado sem adicionar telefone adicional.\n");
-    }
-    printf("Cadastro concluido com sucesso!\n");
+
+    printf("Cadastro concluido!\n");
 
     salvarContato(*contato);
 
-    printf("Pressione ENTER para voltar ao menu principal...");
-    getchar(); 
-    getchar(); 
+    printf("Pressione ENTER para voltar...");
+    getchar();
+    getchar();
 }
 
 
+//menu telefone adicional
+void CadastroTelefone(Contato *agenda, int quantidadeContatos) {
 
+    int opcao3;
+    bool dadosValidos = false;
+
+    do {
+        printf("*** Cadastro de Telefone ***\n");
+        printf("1. Cadastrar por nome\n");
+        printf("2. Cadastrar por ID\n");
+        printf("3. Retornar\n");
+
+        opcao3 = LerNumeroValido(3, 1);
+
+        char nomeBusca[50];
+
+        switch(opcao3) {
+
+        case 1: {
+            printf("Digite o nome: ");
+            scanf(" %49[^\n]", nomeBusca);
+
+            int pos = BuscarContatoPorNome(agenda, quantidadeContatos, nomeBusca);
+
+            if (pos == -1) {
+                printf("Contato nao encontrado!\n");
+                break;
+            }
+
+            int indice = agenda[pos].quantidadeTelefones;
+
+            printf("Digite o novo telefone: ");
+            scanf(" %14s", agenda[pos].telefone[indice]);
+
+            dadosValidos = ValidarTelefone(agenda[pos].telefone[indice]);
+
+            if (dadosValidos) {
+                agenda[pos].quantidadeTelefones++;
+                printf("Telefone cadastrado!\n");
+            } else {
+                printf("Telefone invalido.\n");
+            }
+            break;
+        }
+
+        case 2: {
+            int idBusca;
+            printf("Digite o ID: ");
+            scanf(" %d", &idBusca);
+
+            int pos = BuscarContatoPorID(agenda, quantidadeContatos, idBusca);
+
+            if (pos == -1) {
+                printf("Contato nao encontrado!\n");
+                break;
+            }
+
+            int indice = agenda[pos].quantidadeTelefones;
+
+            printf("Digite o novo telefone: ");
+            scanf(" %14s", agenda[pos].telefone[indice]);
+
+            dadosValidos = ValidarTelefone(agenda[pos].telefone[indice]);
+
+            if (dadosValidos) {
+                agenda[pos].quantidadeTelefones++;
+                printf("Telefone cadastrado!\n");
+            } else {
+                printf("Telefone invalido.\n");
+            }
+            break;
+        }
+
+        } 
+
+    } while(opcao3 != 3);
+}
 
 
 

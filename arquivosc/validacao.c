@@ -4,6 +4,7 @@
 #include <string.h>
 #include "../arquivosh/validacao.h"
 #include "../arquivosh/contato.h"
+#include "../arquivosh/cadastrar.h"
 
 
 int LerNumeroValido(int max, int min) {
@@ -194,4 +195,22 @@ bool ValidarDataNascimento(const char *dataNascimento) {
     }
 
     return true;
+}
+
+int BuscarContatoPorNome(const Contato *agenda, int quantidadeContatos, const char *nome) {
+    for (int i = 0; i < quantidadeContatos; i++) {
+        if (strcmp(agenda[i].nome, nome) == 0) {
+            return i; 
+        }
+    }
+    return -1; 
+}
+
+int BuscarContatoPorID(const Contato *agenda, int quantidadeContatos, int IDPessoa) {
+    for (int i = 0; i < quantidadeContatos; i++) {
+        if (agenda[i].IDPessoa == IDPessoa) {
+            return i; 
+        }
+    }
+    return -1; 
 }
