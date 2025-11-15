@@ -15,4 +15,9 @@ typedef struct {
 int BuscarContatoPorNome(const Contato *agenda, int quantidade, const char *nome);
 int BuscarContatoPorID(const Contato *agenda, int quantidade, int id);
 
+void cadastrarContato(Contato agenda[], int *qtd);
+int carregarContatos(Contato agenda[]);
+void salvarContatos(Contato agenda[], int qtd);
+
+
 #endif

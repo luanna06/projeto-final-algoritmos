@@ -9,23 +9,24 @@
 
 int LerNumeroValido(int max, int min) {
     int num;
+    char buffer[50];
 
-    printf("Digite uma opcao: ");
-    scanf("%d", &num);
+    while (1) {
+        printf("Digite uma opcao: ");
+        fgets(buffer, sizeof(buffer), stdin);
 
-    while (getchar() != '\n');
+        // verifica se é número válido
+        if (sscanf(buffer, "%d", &num) == 1) {
+            if (num >= min && num <= max) {
+                return num;
+            }
+        }
 
-    if (num < min || num > max) {
         printf("Opcao invalida! Tente novamente.\n");
-        return LerNumeroValido(max, min);
-    } else {
-        return num;
     }
 }
 
-int menu (int i){
-    
-}
+
 
 bool ValidarNome(const char *nome) {
     int tamanho = strlen(nome);
@@ -214,3 +215,4 @@ int BuscarContatoPorID(const Contato *agenda, int quantidadeContatos, int IDPess
     }
     return -1; 
 }
+

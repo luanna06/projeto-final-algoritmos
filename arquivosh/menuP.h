@@ -4,5 +4,6 @@
 #include "contato.h"
 
 void exibirmenu();
-void menuCadastro(int opcao, Contato *contato);
+void menuCadastro(int opcao, Contato *agenda, int  *quantidadeContatos);
+
 #endif

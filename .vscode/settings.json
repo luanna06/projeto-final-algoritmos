@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "stdio.h": "c",
-        "menup.h": "c"
+        "menup.h": "c",
+        "validacao.h": "c"
     }
 }

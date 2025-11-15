@@ -17,25 +17,26 @@ void exibirmenu() {
     printf("5. Sair\n");
 }
 
-void menuCadastro(int opcao, Contato *contato) {
-    switch(opcao) {
+void menuCadastro(int opcao, Contato *agenda, int *quantidadeContatos) {
+    switch (opcao) {
         case 1:
-        cadastrar(contato);
-        break;
+            cadastrar(agenda, quantidadeContatos);
+            break;
 
         case 2:
-        editar();
-        break;
+            editar(agenda, *quantidadeContatos);
+            break;
 
         case 3:
-        excluir();
-        break;
+            excluir(agenda, quantidadeContatos);
+            break;
 
         case 4:
-        consultar();
-        break;
+            consultar(agenda, *quantidadeContatos);
+            break;
 
         case 5:
-        printf("Saindo...\n");
+            printf("Sair...\n");
+            break;
     }
 }
