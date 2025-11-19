@@ -6,4 +6,6 @@
 void salvarContato(Contato c);
 int carregarContatos(Contato agenda[]);
 
+
+
 #endif

@@ -59,6 +59,10 @@ void CadastroPessoa(Contato *contato, Contato agenda[], int quantidadeContatos) 
         printf("Digite o nome da pessoa: ");
         scanf(" %99[^\n]", contato->nome);
 
+        if (nomeJaExiste(agenda, quantidadeContatos, contato->nome)) {
+        printf(" ja existe um contato cadastrado com esse nome.\n");
+        continue;
+    }
         dadosValidos = ValidarNome(contato->nome);
     }
     printf("Nome cadastrado com sucesso!\n");
@@ -107,6 +111,8 @@ void CadastroPessoa(Contato *contato, Contato agenda[], int quantidadeContatos) 
         }
         contato->quantidadeTelefones = 1;
     }
+
+    contato->IDPessoa = ++ultimoID;
 
     printf("Cadastro concluido!\n");
 }

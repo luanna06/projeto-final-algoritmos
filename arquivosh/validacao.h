@@ -13,6 +13,8 @@ bool ValidarTelefone(const char *telefone);
 bool ValidarEmail(const char *email);
 bool ValidarCPF(const char *cpf);
 bool ValidarDataNascimento(const char *dataNascimento);
+bool nomeJaExiste(Contato *agenda, int quantidade, char *nome);
+
 
 // buscas
 int BuscarContatoPorNome(const Contato *agenda, int quantidade, const char *nome);

@@ -69,6 +69,16 @@ bool ValidarNome(const char *nome) {
     return true;
 }
 
+bool nomeJaExiste(Contato *agenda, int quantidade, char *nome) {
+    for (int i = 0; i < quantidade; i++) {
+        if (strcmp(agenda[i].nome, nome) == 0) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
 bool ValidarTelefone(const char *telefone){
     int tamanho = strlen(telefone);
     if(tamanho != 11){

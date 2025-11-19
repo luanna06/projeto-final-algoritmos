@@ -11,6 +11,7 @@ typedef struct {
     int IDPessoa;
 } Contato;
 
+extern int ultimoID;
 
 int BuscarContatoPorNome(const Contato *agenda, int quantidade, const char *nome);
 int BuscarContatoPorID(const Contato *agenda, int quantidade, int id);
