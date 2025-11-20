@@ -5,7 +5,7 @@
 
 int ultimoID = 0;
 
-// SALVAR TODOS OS CONTATOS (reescreve arquivo)
+//funçao para salvar todos os contatos no arquivo
 void salvarContatos(Contato agenda[], int qtd) {
     FILE *file = fopen("contatos.csv", "w");
     if (!file) {
@@ -33,7 +33,7 @@ void salvarContatos(Contato agenda[], int qtd) {
     fclose(file);
 }
 
-// CARREGAR TODOS
+// função para carregar contatos do arquivo
 int carregarContatos(Contato agenda[]) {
     FILE *file = fopen("contatos.csv", "r");
     if (!file) return 0;
@@ -42,14 +42,15 @@ int carregarContatos(Contato agenda[]) {
     char linha[512];
 
     while (fgets(linha, sizeof(linha), file)) {
+
+        linha[strcspn(linha, "\n")] = '\0';
+
         Contato c;
         char *token;
         int campo = 0;
 
-        // Inicializa telefones
         c.quantidadeTelefones = 0;
 
-        // separa cada campo pelo ';'
         token = strtok(linha, ";");
         while (token != NULL) {
             switch (campo) {
@@ -61,8 +62,8 @@ int carregarContatos(Contato agenda[]) {
                 case 5: c.quantidadeTelefones = atoi(token); break;
                 default:
                     if (campo >= 6 && campo < 6 + c.quantidadeTelefones) {
-                        strncpy(c.telefone[campo - 6], token, sizeof(c.telefone[0])-1);
-                        c.telefone[campo - 6][sizeof(c.telefone[0])-1] = '\0';
+                        strncpy(c.telefone[campo - 6], token, sizeof(c.telefone[0]) - 1);
+                        c.telefone[campo - 6][sizeof(c.telefone[0]) - 1] = '\0';
                     }
                     break;
             }
@@ -70,8 +71,7 @@ int carregarContatos(Contato agenda[]) {
             token = strtok(NULL, ";");
         }
 
-        if (c.IDPessoa > ultimoID) {
-            ultimoID = c.IDPessoa;}
+        if (c.IDPessoa > ultimoID) ultimoID = c.IDPessoa;
 
         agenda[qtd++] = c;
     }
@@ -99,7 +99,7 @@ void salvarEdicao(Contato *agenda, int quantidade)
             agenda[i].quantidadeTelefones
         );
 
-        // salvar os telefones
+        // salvar os telefones no arquivo
         for (int t = 0; t < agenda[i].quantidadeTelefones; t++) {
             fprintf(arquivo, ";%s", agenda[i].telefone[t]);
         }

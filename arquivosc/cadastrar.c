@@ -5,15 +5,9 @@
 #include "../arquivosh/validacao.h"
 #include "../arquivosh/arquivo.h"
 
-// declarações de funções
-void CadastroPessoa(Contato *contato, Contato agenda[], int quantidadeContatos);
-void CadastroTelefone(Contato *agenda, int quantidadeContatos);
-
-// menu cadastro
 void cadastrar(Contato *agenda, int *quantidadeContatos) {
 
     int opcao2;
-    int c; // para limpeza de buffer
 
     do {
         printf("*** Menu de Cadastro ***\n");
@@ -21,7 +15,7 @@ void cadastrar(Contato *agenda, int *quantidadeContatos) {
         printf("2. Telefone\n");
         printf("3. Retornar\n");
 
-        while ((c = getchar()) != '\n' && c != EOF); // limpa buffer
+        while((getchar()) != '\n' && getchar() != EOF);
         opcao2 = LerNumeroValido(3, 1);
 
         switch(opcao2) {
@@ -29,13 +23,12 @@ void cadastrar(Contato *agenda, int *quantidadeContatos) {
             case 1: {
                 CadastroPessoa(&agenda[*quantidadeContatos], agenda, *quantidadeContatos);
                 (*quantidadeContatos)++;
-                salvarContatos(agenda, *quantidadeContatos); // salva após adicionar pessoa
+                salvarContatos(agenda, *quantidadeContatos);
                 break;
             }
 
             case 2:
                 CadastroTelefone(agenda, *quantidadeContatos);
-                // salvarContatos já chamado dentro da função CadastroTelefone
                 break;
 
             case 3:
@@ -46,27 +39,24 @@ void cadastrar(Contato *agenda, int *quantidadeContatos) {
     } while(opcao2 != 3);
 }
 
-// Função CadastroPessoa
 void CadastroPessoa(Contato *contato, Contato agenda[], int quantidadeContatos) {
 
     bool dadosValidos = false;
-    int c; // para limpar buffer
+    int c;
 
-    // nome
     while(!dadosValidos) {
         printf("*** Cadastro de Informacoes Pessoais ***\n");
         printf("Digite o nome da pessoa: ");
         scanf(" %99[^\n]", contato->nome);
 
         if (nomeJaExiste(agenda, quantidadeContatos, contato->nome)) {
-        printf(" ja existe um contato cadastrado com esse nome.\n");
-        continue;
-    }
+            printf("Ja existe um contato cadastrado com esse nome.\n");
+            continue;
+        }
         dadosValidos = ValidarNome(contato->nome);
     }
     printf("Nome cadastrado com sucesso!\n");
 
-    // data de nascimento
     dadosValidos = false;
     while(!dadosValidos) {
         printf("Digite a data de nascimento (DD/MM/AAAA): ");
@@ -75,7 +65,6 @@ void CadastroPessoa(Contato *contato, Contato agenda[], int quantidadeContatos) 
     }
     printf("Data cadastrada com sucesso!\n");
 
-    // CPF
     dadosValidos = false;
     while(!dadosValidos) {
         printf("Digite o CPF (apenas numeros): ");
@@ -84,7 +73,6 @@ void CadastroPessoa(Contato *contato, Contato agenda[], int quantidadeContatos) 
     }
     printf("CPF cadastrado com sucesso!\n");
 
-    // email
     dadosValidos = false;
     while(!dadosValidos) {
         printf("Digite o email: ");
@@ -93,10 +81,8 @@ void CadastroPessoa(Contato *contato, Contato agenda[], int quantidadeContatos) 
     }
     printf("Email cadastrado com sucesso!\n");
 
-    // telefone opcional
     char escolha;
     printf("Deseja cadastrar um telefone agora? (s/n): ");
-    while ((c = getchar()) != '\n' && c != EOF); // limpa buffer
     scanf(" %c", &escolha);
 
     contato->quantidadeTelefones = 0;
@@ -116,12 +102,11 @@ void CadastroPessoa(Contato *contato, Contato agenda[], int quantidadeContatos) 
     printf("Cadastro concluido!\n");
 }
 
-// Função CadastroTelefone
 void CadastroTelefone(Contato *agenda, int quantidadeContatos) {
 
     int opcao3;
     bool dadosValidos = false;
-    int c; // para limpar buffer
+    int c;
     char nomeBusca[50];
 
     do {
@@ -130,7 +115,6 @@ void CadastroTelefone(Contato *agenda, int quantidadeContatos) {
         printf("2. Cadastrar por ID\n");
         printf("3. Retornar\n");
 
-        while ((c = getchar()) != '\n' && c != EOF); // limpa buffer
         opcao3 = LerNumeroValido(3, 1);
 
         switch(opcao3) {
@@ -153,7 +137,7 @@ void CadastroTelefone(Contato *agenda, int quantidadeContatos) {
             if (dadosValidos) {
                 agenda[pos].quantidadeTelefones++;
                 printf("Telefone cadastrado!\n");
-                salvarContatos(agenda, quantidadeContatos); // salva imediatamente
+                salvarContatos(agenda, quantidadeContatos);
             } else {
                 printf("Telefone invalido.\n");
             }
@@ -179,7 +163,7 @@ void CadastroTelefone(Contato *agenda, int quantidadeContatos) {
             if (dadosValidos) {
                 agenda[pos].quantidadeTelefones++;
                 printf("Telefone cadastrado!\n");
-                salvarContatos(agenda, quantidadeContatos); // salva imediatamente
+                salvarContatos(agenda, quantidadeContatos);
             } else {
                 printf("Telefone invalido.\n");
             }

@@ -18,8 +18,7 @@ void editar(Contato *agenda, int quantidadeContatos) {
         printf("2. Telefone\n");
         printf("3. Retornar\n");
 
-        while ((c = getchar()) != '\n' && c != EOF);
-
+        while((c = getchar()) != '\n' && c != EOF);
         opcao4 = LerNumeroValido(3, 1);
 
         switch(opcao4) {
@@ -31,7 +30,6 @@ void editar(Contato *agenda, int quantidadeContatos) {
                 printf("3. Retornar\n");
 
                 int opcaoedicao = LerNumeroValido(3, 1);
-                while ((c = getchar()) != '\n' && c != EOF);
 
                 switch(opcaoedicao){
                     case 1: editarPorNome(agenda, quantidadeContatos); break;
@@ -48,7 +46,6 @@ void editar(Contato *agenda, int quantidadeContatos) {
                 printf("3. Retornar\n");
 
                 int opc = LerNumeroValido(3, 1);
-                while ((c = getchar()) != '\n' && c != EOF);
 
                 switch(opc){
                     case 1: editarTelefonePorNome(agenda, quantidadeContatos); break;
@@ -71,6 +68,7 @@ void editarPorNome(Contato *agenda, int quantidadeContatos) {
     int c;
     char nomeBusca[31];
 
+    //editar por nome
     printf("Digite o nome: ");
     scanf(" %30[^\n]", nomeBusca);
 
@@ -90,7 +88,6 @@ void editarPorNome(Contato *agenda, int quantidadeContatos) {
         printf("4. Email\n");
         printf("5. Retornar\n");
 
-        while ((c = getchar()) != '\n' && c != EOF);
         opcao = LerNumeroValido(5, 1);
 
         switch(opcao) {
@@ -176,6 +173,7 @@ void editarPorNome(Contato *agenda, int quantidadeContatos) {
     } while(opcao != 5);
 }
 
+//editar por ID
 void editarPorID(Contato *agenda, int quantidadeContatos) {
 
     int c;
@@ -201,7 +199,6 @@ void editarPorID(Contato *agenda, int quantidadeContatos) {
         printf("5. Retornar\n");
 
         opcao = LerNumeroValido(5, 1);
-        while ((c = getchar()) != '\n' && c != EOF);
 
         switch(opcao) {
 
@@ -288,7 +285,6 @@ void editarPorID(Contato *agenda, int quantidadeContatos) {
 }
 
 //editar telefone por nome
-
 void editarTelefonePorNome(Contato *agenda, int quantidade) {
 
     char nomeBusca[31];
@@ -326,7 +322,6 @@ void editarTelefonePorNome(Contato *agenda, int quantidade) {
 }
 
 //editar telefone por ID
-
 void editarTelefonePorID(Contato *agenda, int quantidade) {
 
     int idBusca;

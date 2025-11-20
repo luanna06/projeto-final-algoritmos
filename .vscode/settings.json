@@ -2,6 +2,7 @@
     "files.associations": {
         "stdio.h": "c",
         "menup.h": "c",
-        "validacao.h": "c"
+        "validacao.h": "c",
+        "cadastrar.h": "c"
     }
 }

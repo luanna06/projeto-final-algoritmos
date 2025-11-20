@@ -27,11 +27,10 @@ void consultar(Contato *agenda, int quantidadeContatos){
                 printf("3. Retornar\n");
 
                 opcaoPessoa = LerNumeroValido(3, 1);
-                while((c = getchar()) != '\n' && c != EOF);
 
                 switch(opcaoPessoa){
 
-                    //Consultar pessoa por nome
+                    //consultar pessoa por nome
                     case 1: {
                         char nomeBusca[31];
 
@@ -57,12 +56,11 @@ void consultar(Contato *agenda, int quantidadeContatos){
                         break;
                     }
 
-                    // Consultar pessoa por ID
+                    // consultar pessoa por ID
                     case 2: {
                         int idBusca;
                         printf("Digite o ID da pessoa: ");
                         scanf(" %d", &idBusca);
-                        while((c = getchar()) != '\n' && c != EOF);
 
                         int indice = BuscarContatoPorID(agenda, quantidadeContatos, idBusca);
                         if(indice == -1){
@@ -99,10 +97,10 @@ void consultar(Contato *agenda, int quantidadeContatos){
                 printf("3. Retornar\n");
 
                 opcaoTel = LerNumeroValido(3, 1);
-                while((c = getchar()) != '\n' && c != EOF);
 
                 switch(opcaoTel){
 
+                    //consultar telefone por nome
                     case 1: {
                         char nomeBusca[31];
 
@@ -126,6 +124,7 @@ void consultar(Contato *agenda, int quantidadeContatos){
                         break;
                     }
 
+                    //consultar telefone por ID
                     case 2: {
                         int idBusca;
 

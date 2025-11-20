@@ -15,7 +15,6 @@ void excluir(Contato *agenda, int *quantidadeContatos) {
     printf("2. Telefone\n");
     printf("3. Retornar\n");
 
-    while((c = getchar()) != '\n' && c != EOF);
     opcao = LerNumeroValido(3, 1);
 
     switch(opcao){
@@ -42,14 +41,13 @@ void excluirPessoa(Contato *agenda, int *quantidadeContatos){
         printf("2. Excluir por ID\n");
         printf("3. Retornar\n");
 
-        while((c = getchar()) != '\n' && c != EOF);
         opcao = LerNumeroValido(3, 1);
 
         switch(opcao){
             case 1: {
                 char nomeBusca[31];
 
-                printf("Digite o nome da pessoa que deseja excluir: ");
+                printf("Digite o nome da pessoa que deseja excluir: ");    //excluir por nome
                 fgets(nomeBusca, sizeof(nomeBusca), stdin);
                 nomeBusca[strcspn(nomeBusca, "\n")] = 0; 
 
@@ -69,6 +67,8 @@ void excluirPessoa(Contato *agenda, int *quantidadeContatos){
                 }
                 break;
             }
+
+            //excluir por ID
             case 2: {
                 int idBusca;
 
@@ -117,7 +117,7 @@ void excluirTelefone(Contato *agenda, int quantidadeContatos){
             case 1: {
                 char nomeBusca[31];
 
-                printf("Digite o nome da pessoa cujo telefone deseja excluir: ");
+                printf("Digite o nome da pessoa cujo telefone deseja excluir: ");  //excluir telefone por nome
                 fgets(nomeBusca, sizeof(nomeBusca), stdin);
                 nomeBusca[strcspn(nomeBusca, "\n")] = 0; 
 
@@ -152,11 +152,10 @@ void excluirTelefone(Contato *agenda, int quantidadeContatos){
                 break;
             }
             case 2: {
-                int idBusca;
+                int idBusca;    //excluir telefone por ID   
 
                 printf("Digite o ID da pessoa cujo telefone deseja excluir: "); 
                 scanf(" %d", &idBusca);
-                while((c = getchar()) != '\n' && c != EOF);
                 
                 int indiceID = BuscarContatoPorID(agenda, quantidadeContatos, idBusca);
                 if(indiceID == -1){

@@ -47,13 +47,6 @@ int main() {
                 break;
         }
 
-        int c;
-        if(opcao != 5){
-            printf("Pressione Enter para continuar...\n");
-            while ((c = getchar()) != '\n' && c != EOF);
-            getchar();
-        }
-
     } while (opcao != 5);
 
     return 0;

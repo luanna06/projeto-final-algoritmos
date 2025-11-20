@@ -14,7 +14,6 @@ int LerNumeroValido(int max, int min) {
         printf("Digite uma opcao: ");
         fgets(buffer, sizeof(buffer), stdin);
 
-        // verifica se é número válido
         if (sscanf(buffer, "%d", &num) == 1) {
             if (num >= min && num <= max) {
                 return num;
@@ -24,7 +23,6 @@ int LerNumeroValido(int max, int min) {
         printf("Opcao invalida! Tente novamente.\n");
     }
 }
-
 
 bool ValidarNome(const char *nome) {
     int tamanho = strlen(nome);
@@ -41,18 +39,17 @@ bool ValidarNome(const char *nome) {
     for (int i = 0; i < tamanho; i++) {
         char c = nome[i];
 
-        // Verificação se possui somente letras
+        // verificação se possui somente letras
         if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
             if (temEspaco)
                 palavraDepoisDoEspaco = true;
             else
                 palavraAntesDoEspaco = true;
         }
-        // Verifica se é espaço
+        // verifica se é espaço
         else if (c == ' ') {
             temEspaco = true;
         }
-        // Se for qualquer outro caractere
         else {
             printf("Nome invalido! Deve conter apenas letras e espacos.\n");
             return false;
