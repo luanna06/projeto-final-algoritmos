@@ -4,5 +4,8 @@
 
 
 void editar(Contato *agenda, int quantidadeContatos);
+void editarPorNome(Contato *agenda, int quantidadeContatos);
+void editarPorID(Contato *agenda, int quantidadeContatos);
+
 
 #endif

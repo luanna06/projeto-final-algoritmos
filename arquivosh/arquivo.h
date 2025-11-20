@@ -3,9 +3,8 @@
 
 #include "contato.h"
 
-void salvarContato(Contato c);
 int carregarContatos(Contato agenda[]);
-
-
+void salvarContatos(Contato agenda[], int qtd);
+void salvarEdicao(Contato agenda[], int qtd);
 
 #endif

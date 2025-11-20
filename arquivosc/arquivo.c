@@ -80,3 +80,35 @@ int carregarContatos(Contato agenda[]) {
     fclose(file);
     return qtd;
 }
+
+void salvarEdicao(Contato *agenda, int quantidade)
+{
+    FILE *arquivo = fopen("contatos.csv", "w");
+    if (arquivo == NULL) {
+        printf("Erro ao abrir arquivo para salvar edicoes.\n");
+        return;
+    }
+
+    for (int i = 0; i < quantidade; i++) {
+
+        fprintf(arquivo, "%d;%s;%s;%s;%s;%d",
+            agenda[i].IDPessoa,
+            agenda[i].nome,
+            agenda[i].dataNascimento,
+            agenda[i].cpf,
+            agenda[i].email,
+            agenda[i].quantidadeTelefones
+        );
+
+        // salvar os telefones
+        for (int t = 0; t < agenda[i].quantidadeTelefones; t++) {
+            fprintf(arquivo, ";%s", agenda[i].telefone[t]);
+        }
+
+        fprintf(arquivo, "\n");
+    }
+
+    fclose(arquivo);
+    printf("Edicao salva com sucesso!\n");
+}
+
