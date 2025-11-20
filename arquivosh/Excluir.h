@@ -5,5 +5,7 @@
 
 
 void excluir(Contato *agenda, int *quantidadeContatos);
+void excluirPessoa(Contato *agenda, int *quantidadeContatos);
+void excluirTelefone(Contato *agenda, int quantidadeContatos);
 
 #endif

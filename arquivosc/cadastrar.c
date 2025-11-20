@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <stdbool.h>
 #include "../arquivosh/contato.h"
 #include "../arquivosh/cadastrar.h"
@@ -186,8 +185,6 @@ void CadastroTelefone(Contato *agenda, int quantidadeContatos) {
             }
             break;
         }
-
         }
-
     } while(opcao3 != 3);
 }

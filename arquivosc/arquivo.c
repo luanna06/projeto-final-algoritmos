@@ -49,7 +49,6 @@ int carregarContatos(Contato agenda[]) {
         // Inicializa telefones
         c.quantidadeTelefones = 0;
 
-
         // separa cada campo pelo ';'
         token = strtok(linha, ";");
         while (token != NULL) {
@@ -111,4 +110,3 @@ void salvarEdicao(Contato *agenda, int quantidade)
     fclose(arquivo);
     printf("Edicao salva com sucesso!\n");
 }
-

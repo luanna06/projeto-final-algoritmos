@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
 #include "../arquivosh/validacao.h"
@@ -25,7 +24,6 @@ int LerNumeroValido(int max, int min) {
         printf("Opcao invalida! Tente novamente.\n");
     }
 }
-
 
 
 bool ValidarNome(const char *nome) {
@@ -77,7 +75,6 @@ bool nomeJaExiste(Contato *agenda, int quantidade, char *nome) {
     }
     return false;
 }
-
 
 bool ValidarTelefone(const char *telefone){
     int tamanho = strlen(telefone);
@@ -225,4 +222,3 @@ int BuscarContatoPorID(const Contato *agenda, int quantidadeContatos, int IDPess
     }
     return -1; 
 }
-

@@ -1,14 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <string.h>
 #include "../arquivosh/validacao.h"
 #include "../arquivosh/editar.h"
 #include "../arquivosh/contato.h"
 #include "../arquivosh/arquivo.h"
-
-void editarTelefonePorNome(Contato *agenda, int quantidade);
-void editarTelefonePorID(Contato *agenda, int quantidade);
 
 
 void editar(Contato *agenda, int quantidadeContatos) {
@@ -94,8 +90,8 @@ void editarPorNome(Contato *agenda, int quantidadeContatos) {
         printf("4. Email\n");
         printf("5. Retornar\n");
 
-        opcao = LerNumeroValido(5, 1);
         while ((c = getchar()) != '\n' && c != EOF);
+        opcao = LerNumeroValido(5, 1);
 
         switch(opcao) {
 
@@ -179,7 +175,6 @@ void editarPorNome(Contato *agenda, int quantidadeContatos) {
 
     } while(opcao != 5);
 }
-
 
 void editarPorID(Contato *agenda, int quantidadeContatos) {
 
@@ -367,4 +362,3 @@ void editarTelefonePorID(Contato *agenda, int quantidade) {
     salvarEdicao(agenda, quantidade);
     printf("Telefone atualizado com sucesso!\n");
 }
-

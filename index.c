@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "validacao.h"
-#include "arquivosh/menuP.h"
 #include "Cadastrar.h"
 #include "Editar.h"
 #include "Excluir.h"
@@ -16,7 +15,12 @@ int main() {
     int opcao;
 
     do {
-        exibirmenu();
+        printf("*** Menu Principal ***\n");
+        printf("1. Cadastrar\n");
+        printf("2. Editar\n");
+        printf("3. Excluir\n");
+        printf("4. Consultar\n");
+        printf("5. Sair\n");
         opcao = LerNumeroValido(5, 1);
         printf("Voce escolheu a opcao: %d\n", opcao);
 
@@ -38,7 +42,8 @@ int main() {
                 break;
 
             case 5:
-                printf("Encerrando...\n");
+                salvarContatos(agenda, quantidadeContatos);
+                printf("Saindo do programa!\n");
                 break;
         }
 
