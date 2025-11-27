@@ -81,36 +81,61 @@ void CadastroPessoa(Contato *contato, Contato agenda[], int quantidadeContatos) 
     }
     printf("Email cadastrado com sucesso!\n");
 
-    char escolha;
-    printf("Deseja cadastrar um telefone agora? (s/n): ");
+    dadosValidos = false;
+    while (!dadosValidos)
+    {
+    printf("Digite o telefone (DDD + numero): ");
+    scanf(" %14s", contato->telefone[0]);     // primeiro telefone
+    dadosValidos = ValidarTelefone(contato->telefone[0]);
+    }
+    printf("Telefone cadastrado com sucesso!\n");
+
+    contato->quantidadeTelefones = 1;  // já cadastrou o primeiro
+
+char escolha = 's';
+
+while (1) {
+
+    printf("Deseja cadastrar outro telefone? (s/n): ");
     scanf(" %c", &escolha);
 
-    contato->quantidadeTelefones = 0;
-
-    if (escolha == 's' || escolha == 'S') {
-        dadosValidos = false;
-        while(!dadosValidos) {
-            printf("Digite o telefone (DDD + numero): ");
-            scanf(" %14s", contato->telefone[0]);
-            dadosValidos = ValidarTelefone(contato->telefone[0]);
-        }
-        contato->quantidadeTelefones = 1;
+    // validação da resposta
+    if (escolha == 'n' || escolha == 'N') {
+        break; // sai do loop
     }
+
+    if (escolha != 's' && escolha != 'S') {
+        printf("Opcao invalida! Digite apenas 's' ou 'n'.\n");
+        continue; // volta e pergunta de novo
+    }
+
+    // se chegou aqui, escolha é 's'
+    int i = contato->quantidadeTelefones;
+
+    dadosValidos = false;
+    while (!dadosValidos) {
+        printf("Digite o telefone (DDD + numero): ");
+        scanf(" %14s", contato->telefone[i]);
+        dadosValidos = ValidarTelefone(contato->telefone[i]);
+    }
+
+    contato->quantidadeTelefones++;
+    printf("Telefone cadastrado com sucesso!\n");
+}
 
     contato->IDPessoa = ++ultimoID;
 
     printf("Cadastro concluido!\n");
-}
+}   
 
 void CadastroTelefone(Contato *agenda, int quantidadeContatos) {
 
     int opcao3;
     bool dadosValidos = false;
-    int c;
     char nomeBusca[50];
 
     do {
-        printf("*** Cadastro de Telefone ***\n");
+        printf("\n*** Cadastro de Telefone ***\n");
         printf("1. Cadastrar por nome\n");
         printf("2. Cadastrar por ID\n");
         printf("3. Retornar\n");
@@ -121,7 +146,7 @@ void CadastroTelefone(Contato *agenda, int quantidadeContatos) {
 
         case 1: {
             printf("Digite o nome: ");
-            scanf(" %49[^\n]", nomeBusca);
+            scanf(" %49[^\n]", nomeBusca);     // leitura correta
 
             int pos = BuscarContatoPorNome(agenda, quantidadeContatos, nomeBusca);
             if (pos == -1) {
@@ -129,18 +154,29 @@ void CadastroTelefone(Contato *agenda, int quantidadeContatos) {
                 break;
             }
 
-            int indice = agenda[pos].quantidadeTelefones;
-            printf("Digite o novo telefone: ");
-            scanf(" %14s", agenda[pos].telefone[indice]);
-
-            dadosValidos = ValidarTelefone(agenda[pos].telefone[indice]);
-            if (dadosValidos) {
-                agenda[pos].quantidadeTelefones++;
-                printf("Telefone cadastrado!\n");
-                salvarContatos(agenda, quantidadeContatos);
-            } else {
-                printf("Telefone invalido.\n");
+            if (agenda[pos].quantidadeTelefones >= 5) {
+                printf("Limite maximo de telefones atingido!\n");
+                break;
             }
+
+            int indice = agenda[pos].quantidadeTelefones;
+
+            dadosValidos = false;
+            while (!dadosValidos) {
+                printf("Digite o novo telefone: ");
+                scanf(" %14s", agenda[pos].telefone[indice]);
+
+                dadosValidos = ValidarTelefone(agenda[pos].telefone[indice]);
+
+                if (!dadosValidos) {
+                    printf("Telefone invalido! Tente novamente.\n");
+                }
+            }
+
+            agenda[pos].quantidadeTelefones++;
+            printf("Telefone cadastrado!\n");
+            salvarContatos(agenda, quantidadeContatos);
+
             break;
         }
 
@@ -155,20 +191,32 @@ void CadastroTelefone(Contato *agenda, int quantidadeContatos) {
                 break;
             }
 
-            int indice = agenda[pos].quantidadeTelefones;
-            printf("Digite o novo telefone: ");
-            scanf(" %14s", agenda[pos].telefone[indice]);
-
-            dadosValidos = ValidarTelefone(agenda[pos].telefone[indice]);
-            if (dadosValidos) {
-                agenda[pos].quantidadeTelefones++;
-                printf("Telefone cadastrado!\n");
-                salvarContatos(agenda, quantidadeContatos);
-            } else {
-                printf("Telefone invalido.\n");
+            if (agenda[pos].quantidadeTelefones >= 5) {
+                printf("Limite maximo de telefones atingido!\n");
+                break;
             }
+
+            int indice = agenda[pos].quantidadeTelefones;
+
+            dadosValidos = false;
+            while (!dadosValidos) {
+                printf("Digite o novo telefone: ");
+                scanf(" %14s", agenda[pos].telefone[indice]);
+
+                dadosValidos = ValidarTelefone(agenda[pos].telefone[indice]);
+
+                if (!dadosValidos) {
+                    printf("Telefone invalido! Tente novamente.\n");
+                }
+            }
+
+            agenda[pos].quantidadeTelefones++;
+            printf("Telefone cadastrado!\n");
+            salvarContatos(agenda, quantidadeContatos);
+
             break;
         }
         }
+
     } while(opcao3 != 3);
 }
