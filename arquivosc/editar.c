@@ -10,7 +10,7 @@
 void editar(Contato *agenda, int quantidadeContatos) {
 
     int c;
-    int opcao4, opcaoedicao;
+    int opcao4, opcaoedicao, opc;
 
     do {
         printf("*** Menu de Edicao ***\n");
@@ -46,7 +46,8 @@ void editar(Contato *agenda, int quantidadeContatos) {
                 printf("2. ID\n");
                 printf("3. Retornar\n");
 
-                int opc = LerNumeroValido(3, 1);
+                printf("Escolha uma opcao: ");
+                scanf(" %d", &opc);
 
                 switch(opc){
                     case 1: editarTelefonePorNome(agenda, quantidadeContatos); break;
@@ -317,6 +318,7 @@ void editarTelefonePorNome(Contato *agenda, int quantidade) {
 
     int escolha;
     printf("Qual telefone deseja alterar? ");
+    getchar();
     escolha = LerNumeroValido(agenda[pos].quantidadeTelefones, 1);
     escolha--; // índice real
 
@@ -354,6 +356,7 @@ void editarTelefonePorID(Contato *agenda, int quantidade) {
 
     int escolha;
     printf("Qual telefone deseja alterar? ");
+    getchar();
     escolha = LerNumeroValido(agenda[pos].quantidadeTelefones, 1);
     escolha--;
 

@@ -52,6 +52,7 @@ void excluirPessoa(Contato *agenda, int *quantidadeContatos){
                 char nomeBusca[31];
 
                 printf("Digite o nome da pessoa que deseja excluir: ");    //excluir por nome
+                getchar();
                 fgets(nomeBusca, sizeof(nomeBusca), stdin);
                 nomeBusca[strcspn(nomeBusca, "\n")] = 0; 
 
@@ -124,6 +125,7 @@ void excluirTelefone(Contato *agenda, int quantidadeContatos){
                 char nomeBusca[31];
 
                 printf("Digite o nome da pessoa cujo telefone deseja excluir: ");  //excluir telefone por nome
+                getchar();
                 fgets(nomeBusca, sizeof(nomeBusca), stdin);
                 nomeBusca[strcspn(nomeBusca, "\n")] = 0; 
 

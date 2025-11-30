@@ -14,7 +14,7 @@ void consultar(Contato *agenda, int quantidadeContatos){
         printf("3. Retornar\n");
 
         printf("Escolha uma opcao: ");
-        scanf("%d", opcao);
+        scanf("%d", &opcao);
 
         switch(opcao){
 
@@ -26,7 +26,8 @@ void consultar(Contato *agenda, int quantidadeContatos){
                 printf("2. Consultar por ID\n");
                 printf("3. Retornar\n");
 
-                opcaoPessoa = LerNumeroValido(3, 1);
+                printf("Escolha uma opcao: ");
+                scanf(" %d", &opcaoPessoa);
 
                 switch(opcaoPessoa){
 
@@ -35,6 +36,7 @@ void consultar(Contato *agenda, int quantidadeContatos){
                         char nomeBusca[31];
 
                         printf("Digite o nome da pessoa: ");
+                        getchar();
                         fgets(nomeBusca, sizeof(nomeBusca), stdin);
                         nomeBusca[strcspn(nomeBusca, "\n")] = 0;
 
@@ -108,6 +110,7 @@ void consultar(Contato *agenda, int quantidadeContatos){
                         char nomeBusca[31];
 
                         printf("Digite o nome da pessoa: ");
+                        getchar();
                         fgets(nomeBusca, sizeof(nomeBusca), stdin);
                         nomeBusca[strcspn(nomeBusca, "\n")] = 0;
 
