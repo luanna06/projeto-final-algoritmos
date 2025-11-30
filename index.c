@@ -21,7 +21,9 @@ int main() {
         printf("3. Excluir\n");
         printf("4. Consultar\n");
         printf("5. Sair\n");
-        opcao = LerNumeroValido(5, 1);
+
+        printf("Escolha uma opcao: ");
+        scanf(" %d", &opcao);
         printf("Voce escolheu a opcao: %d\n", opcao);
 
         switch (opcao) {
@@ -45,6 +47,8 @@ int main() {
                 salvarContatos(agenda, quantidadeContatos);
                 printf("Saindo do programa!\n");
                 break;
+                default:
+                printf("Opcao invalida! Tente novamente.\n");
         }
 
     } while (opcao != 5);

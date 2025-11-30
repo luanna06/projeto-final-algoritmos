@@ -10,7 +10,7 @@
 void editar(Contato *agenda, int quantidadeContatos) {
 
     int c;
-    int opcao4;
+    int opcao4, opcaoedicao;
 
     do {
         printf("*** Menu de Edicao ***\n");
@@ -18,8 +18,8 @@ void editar(Contato *agenda, int quantidadeContatos) {
         printf("2. Telefone\n");
         printf("3. Retornar\n");
 
-        while((c = getchar()) != '\n' && c != EOF);
-        opcao4 = LerNumeroValido(3, 1);
+        printf("Escolha uma opcao: ");
+        scanf(" %d", &opcao4);
 
         switch(opcao4) {
 
@@ -29,7 +29,8 @@ void editar(Contato *agenda, int quantidadeContatos) {
                 printf("2. ID\n");
                 printf("3. Retornar\n");
 
-                int opcaoedicao = LerNumeroValido(3, 1);
+                printf("Escolha uma opcao: ");
+                scanf(" %d", &opcaoedicao);
 
                 switch(opcaoedicao){
                     case 1: editarPorNome(agenda, quantidadeContatos); break;
@@ -58,6 +59,8 @@ void editar(Contato *agenda, int quantidadeContatos) {
             case 3:
                 printf("Retornando ao menu principal.\n");
                 break;
+                default:
+                printf("Opcao invalida! Tente novamente.\n");   
         }
 
     } while(opcao4 != 3);
@@ -88,7 +91,8 @@ void editarPorNome(Contato *agenda, int quantidadeContatos) {
         printf("4. Email\n");
         printf("5. Retornar\n");
 
-        opcao = LerNumeroValido(5, 1);
+        printf("Escolha uma opcao: ");
+        scanf(" %d", &opcao);
 
         switch(opcao) {
 
@@ -165,6 +169,8 @@ void editarPorNome(Contato *agenda, int quantidadeContatos) {
             case 5:
                 printf("Retornando ao menu de edicao.\n");
                 break;
+            default:
+                printf("Opcao invalida! Tente novamente.\n");
         }
 
         salvarEdicao(agenda, quantidadeContatos);
@@ -198,7 +204,8 @@ void editarPorID(Contato *agenda, int quantidadeContatos) {
         printf("4. Email\n");
         printf("5. Retornar\n");
 
-        opcao = LerNumeroValido(5, 1);
+        printf("Escolha uma opcao: ");
+        scanf(" %d", &opcao);
 
         switch(opcao) {
 
@@ -275,7 +282,9 @@ void editarPorID(Contato *agenda, int quantidadeContatos) {
 
             case 5:
                 printf("Retornando ao menu de edicao.\n");
-                break;  
+                break;
+            default:
+                printf("Opcao invalida! Tente novamente.\n");  
         }
 
         salvarEdicao(agenda, quantidadeContatos);
@@ -356,4 +365,6 @@ void editarTelefonePorID(Contato *agenda, int quantidade) {
 
     salvarEdicao(agenda, quantidade);
     printf("Telefone atualizado com sucesso!\n");
+
+    printf("Retornando...\n");
 }

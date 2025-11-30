@@ -15,8 +15,8 @@ void cadastrar(Contato *agenda, int *quantidadeContatos) {
         printf("2. Telefone\n");
         printf("3. Retornar\n");
 
-        while((getchar()) != '\n' && getchar() != EOF);
-        opcao2 = LerNumeroValido(3, 1);
+        printf("Escolha uma opcao: ");
+        scanf(" %d", &opcao2);  
 
         switch(opcao2) {
 
@@ -34,6 +34,8 @@ void cadastrar(Contato *agenda, int *quantidadeContatos) {
             case 3:
                 printf("Retornando ao menu principal...\n");
                 break;
+            default:
+                printf("Opcao invalida! Tente novamente.\n");   
         }
 
     } while(opcao2 != 3);
@@ -140,7 +142,8 @@ void CadastroTelefone(Contato *agenda, int quantidadeContatos) {
         printf("2. Cadastrar por ID\n");
         printf("3. Retornar\n");
 
-        opcao3 = LerNumeroValido(3, 1);
+        printf("Escolha uma opcao: ");
+        scanf(" %d", &opcao3);
 
         switch(opcao3) {
 
@@ -216,6 +219,11 @@ void CadastroTelefone(Contato *agenda, int quantidadeContatos) {
 
             break;
         }
+        case 3:
+            printf("Retornando ao menu de anterior...\n");
+            break;
+        default:
+            printf("Opcao invalida! Tente novamente.\n");
         }
 
     } while(opcao3 != 3);

@@ -15,7 +15,8 @@ void excluir(Contato *agenda, int *quantidadeContatos) {
     printf("2. Telefone\n");
     printf("3. Retornar\n");
 
-    opcao = LerNumeroValido(3, 1);
+    printf("Escolha uma opcao: ");
+    scanf(" %d", &opcao);
 
     switch(opcao){
         case 1: 
@@ -27,6 +28,8 @@ void excluir(Contato *agenda, int *quantidadeContatos) {
         case 3:
             printf("Retornando ao menu principal...\n");
             break;
+            default:
+            printf("Opcao invalida! Tente novamente.\n");   
     }
     } while (opcao != 3);
 }
@@ -41,7 +44,8 @@ void excluirPessoa(Contato *agenda, int *quantidadeContatos){
         printf("2. Excluir por ID\n");
         printf("3. Retornar\n");
 
-        opcao = LerNumeroValido(3, 1);
+        printf("Escolha uma opcao: ");
+        scanf(" %d", &opcao);
 
         switch(opcao){
             case 1: {
@@ -96,6 +100,8 @@ void excluirPessoa(Contato *agenda, int *quantidadeContatos){
             case 3:
                 printf("Retornando ao menu anterior...\n");
                 break;
+                default:
+                printf("Opcao invalida! Tente novamente.\n");
         }
     } while(opcao != 3);
 }
@@ -110,8 +116,8 @@ void excluirTelefone(Contato *agenda, int quantidadeContatos){
         printf("2. Excluir por ID\n");
         printf("3. Retornar\n");
 
-        while((c = getchar()) != '\n' && c != EOF);
-        opcao = LerNumeroValido(3, 1);
+        printf("Escolha uma opcao: ");
+        scanf(" %d", &opcao);
 
         switch(opcao){
             case 1: {
@@ -190,6 +196,8 @@ void excluirTelefone(Contato *agenda, int quantidadeContatos){
             case 3:
                 printf("Retornando ao menu anterior...\n");
                 break;
+                default:
+                printf("Opcao invalida! Tente novamente.\n");   
         }
     } while(opcao != 3);
 }

@@ -13,8 +13,8 @@ void consultar(Contato *agenda, int quantidadeContatos){
         printf("2. Telefone\n");
         printf("3. Retornar\n");
 
-        while((c = getchar()) != '\n' && c != EOF);
-        opcao = LerNumeroValido(3, 1);
+        printf("Escolha uma opcao: ");
+        scanf("%d", opcao);
 
         switch(opcao){
 
@@ -83,6 +83,8 @@ void consultar(Contato *agenda, int quantidadeContatos){
                     case 3:
                         printf("Retornando...\n");
                         break;
+                        default:
+                        printf("Opcao invalida! Tente novamente.\n");
                 }
 
                 break;
@@ -96,7 +98,8 @@ void consultar(Contato *agenda, int quantidadeContatos){
                 printf("2. Consultar telefone por ID\n");
                 printf("3. Retornar\n");
 
-                opcaoTel = LerNumeroValido(3, 1);
+                printf("Escolha uma opcao: ");
+                scanf(" %d", &opcaoTel);    
 
                 switch(opcaoTel){
 
@@ -154,9 +157,10 @@ void consultar(Contato *agenda, int quantidadeContatos){
                 break;
             }
             case 3:
-                printf("Voltando ao menu principal...\n");
+                printf("Voltando ao menu de Consulta...\n");
                 break;
+                default:
+                printf("Opcao invalida! Tente novamente.\n");   
         }
-
     } while(opcao != 3);
 }
